@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Basir Dashboard</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
-<body class="bg-dark text-white">
+<body data-bs-theme="dark">
 
   <header id="brandBar">
     <img src="Baseer.png" alt="Basir logo">
@@ -21,14 +21,14 @@
 
     <div class="row g-3" id="kpiRow"></div>
 
-    <div class="card mt-4 bg-secondary-subtle text-white">
+    <div class="card mt-4">
       <div class="card-header fw-semibold">Leakage Trend</div>
       <div class="card-body">
         <div class="chart-container"><canvas id="leakChart"></canvas></div>
       </div>
     </div>
 
-    <div class="card mt-4 bg-secondary-subtle text-white">
+    <div class="card mt-4">
       <div class="card-header fw-semibold">Sensors Status</div>
       <div class="card-body">
         <div class="input-group mb-3">
@@ -37,15 +37,15 @@
           <input id="newPipeId"    class="form-control" placeholder="Pipe ID">
           <button id="addSensorBtn" class="btn btn-primary" type="button">Add</button>
         </div>
-        <ul id="sensorList" class="list-group"></ul>
+        <ul id="sensorList" class="list-group list-group-flush"></ul>
       </div>
     </div>
 
-    <div class="card mt-4 bg-secondary-subtle text-white">
+    <div class="card mt-4 mb-5">
       <div class="card-header fw-semibold">Pipes – Live Data</div>
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-dark table-striped align-middle mb-0" id="pipeTable">
+          <table class="table table-dark align-middle mb-0" id="pipeTable">
             <thead>
               <tr>
                 <th>Pipe</th><th>Sensor</th><th>Pressure</th><th>Loss Rate</th>
@@ -62,7 +62,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
-
   <script src="script.js"></script>
 </body>
 </html>
