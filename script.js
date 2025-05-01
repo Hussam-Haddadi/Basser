@@ -133,17 +133,33 @@ function cycle(){
 }
 
 function addSensor(){
-  const idF=document.getElementById('newSensorId'),
-        locF=document.getElementById('newSensorLoc'),
-        pipeF=document.getElementById('newPipeId');
-  const id=idF.value.trim(),loc=locF.value.trim(),pid=pipeF.value.trim();
-  if(!id||!loc||!pid)return;
-  if(data.sensors.some(s=>s.id===id)||data.pipes.some(p=>p.id===pid)){alert('ID exists');return;}
-  data.sensors.push({id,loc,status:'OK'});
-  data.pipes.push(makePipe(pid,id,+(5.8+1.2*Math.random()).toFixed(1),false));
-  idF.value=locF.value=pipeF.value='';
-  sensorList(); pipeTable(); kpi();
-}
+    const idF   = document.getElementById('newSensorId');
+    const locF  = document.getElementById('newSensorLoc');
+    const pipeF = document.getElementById('newPipeId');
+    const ssidF = document.getElementById('newWifiSsid');
+    const passF = document.getElementById('newWifiPass');
+  
+    const id   = idF.value.trim();
+    const loc  = locF.value.trim();
+    const pid  = pipeF.value.trim();
+    const ssid = ssidF.value.trim();
+    const pass = passF.value.trim();
+  
+    if(!id || !loc || !pid || !ssid || !pass) return;          
+    if(data.sensors.some(s=>s.id===id) || data.pipes.some(p=>p.id===pid)){
+      alert('Sensor or Pipe ID already exists');
+      return;
+    }
+  
+    data.sensors.push({ id, loc, status:'OK', wifi:{ ssid, pass } });
+  
+    const p0 = +(5.8 + Math.random()*1.2).toFixed(1);
+    data.pipes.push(makePipe(pid, id, p0, false));
+  
+    idF.value = locF.value = pipeF.value = ssidF.value = passF.value = '';
+    sensorList(); pipeTable(); kpi();
+  }
+  
 
 function delSensor(id){
   data.sensors=data.sensors.filter(s=>s.id!==id);
@@ -163,3 +179,20 @@ document.addEventListener('DOMContentLoaded',()=>{
   setInterval(accrue,TICK_LOSS_MS);
   setInterval(cycle,TICK_PIPE_MS);
 });
+
+/* … كل كودك السابق كما هو … */
+
+/* بعد DOMContentLoaded أضف هذا */
+document.addEventListener('DOMContentLoaded',()=>{
+    /* … الأحداث السابقة … */
+  
+    const toggleBtn = document.getElementById('togglePassBtn');
+    const passField = document.getElementById('newWifiPass');
+  
+    toggleBtn.addEventListener('click',()=>{
+      const visible = passField.type === 'text';
+      passField.type = visible ? 'password' : 'text';
+      toggleBtn.innerHTML = visible ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+    });
+  });
+  
