@@ -1,0 +1,19 @@
+.chart-container{height:320px;width:100%;position:relative}
+.sensor-item{cursor:pointer}
+table#pipeTable th,table#pipeTable td{font-size:.9rem}
+
+#brandBar{
+  position:fixed;
+  top:12px;
+  right:12px;
+  z-index:1050;
+}
+
+#brandBar img{
+  width:clamp(100px,12vw,180px);   
+  max-width:90%;
+  height:auto;
+  filter:drop-shadow(0 0 10px rgba(0,255,255,.4));
+}
+
+body{padding-top:70px}
